@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GitVoyager"
+        xmlns:viewModel="clr-namespace:GitVoyager.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -12,6 +13,18 @@
         ResizeMode="NoResize"
         Height="450" Width="800"
         MouseDown="Window_MouseDown">
+    <Window.DataContext>
+        <viewModel:SearchViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+    
+    <Window.Visibility>
+        <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+    
     <Border CornerRadius="12">
         <Border.Background>
             <ImageBrush ImageSource="/Images/searchback.jpg" />
@@ -123,6 +136,7 @@
                                Margin="0,35,0,0"/>
                     
                     <TextBox x:Name="txtRepoName"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"
@@ -133,19 +147,23 @@
                              BorderThickness="0,0,0,1"
                              VerticalAlignment="Center"
                              Margin="0,5,0,0"/>
+                    
                     <TextBlock Text="Masz na dysku repozytorium lokalne?"
                                Foreground="DarkGray"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Margin="0,35,0,0"
                                HorizontalAlignment="Center"/>
+                    
                     <TextBlock Text="Kliknij w przycisk i je wyszukaj!"
                                Foreground="DarkGray"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Margin="0,3,0,0"
                                HorizontalAlignment="Center"/>
-                    <Button x:Name="repoSearch" 
+                    
+                    <Button x:Name="repoSearch"
+                            Command="{Binding SearchRepoCommand}"
                             BorderThickness="0" 
                             Content="Wyszukaj repo"
                             Foreground="White"
@@ -177,7 +195,13 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Foreground="#D7596D"
+                               FontSize="10"
+                               FontWeight="Light"
+                               FontFamily="Montserrat"
+                               Margin="0,3,0,0"
+                               HorizontalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </Border>

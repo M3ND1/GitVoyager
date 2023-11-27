@@ -58,8 +58,9 @@
     <Compile Include="SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModels\ViewModelCommands.cs" />
+    <Compile Include="ViewModels\ViewModelCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -109,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Repositories\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
