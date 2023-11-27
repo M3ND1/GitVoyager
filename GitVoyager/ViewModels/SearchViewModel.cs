@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GitVoyager.Models;
@@ -75,7 +77,8 @@ namespace GitVoyager.ViewModels
             if(user != null)
             {
                 //var user = JsonConvert.DeserializeObject<UserModel>(isValidUsername.Result.ToString());
-                ErrorMessage = user.Name;
+                Thread.CurrentPrincipal = new GenericPrincipal(
+                    new GenericIdentity(Username),null);
                 IsVisibleChanged = false;
             }
             else
