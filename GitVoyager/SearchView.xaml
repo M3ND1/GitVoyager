@@ -22,7 +22,7 @@
     </Window.Resources>
     
     <Window.Visibility>
-        <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+        <Binding Path="IsVisibleChanged" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
     
     <Border CornerRadius="12">
@@ -195,7 +195,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <TextBlock Text="{Binding ErrorMessage}"
+                    <TextBlock Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
                                Foreground="#D7596D"
                                FontSize="10"
                                FontWeight="Light"

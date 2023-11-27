@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GitVoyager.Models;
+using GitVoyager.Repositories;
+using Newtonsoft.Json;
 
 namespace GitVoyager.ViewModels
 {
@@ -12,7 +15,7 @@ namespace GitVoyager.ViewModels
         private string _username;
         private string _errorMessage;
         private bool _isVisible = true;
-
+        private IGithubRepository _githubRepository;
         public string Username
         {
             get
@@ -37,7 +40,7 @@ namespace GitVoyager.ViewModels
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
-        public bool IsVisible
+        public bool IsVisibleChanged
         {
             get
             {
@@ -46,13 +49,14 @@ namespace GitVoyager.ViewModels
             set
             {
                 _isVisible = value;
-                OnPropertyChanged(nameof(IsVisible));
+                OnPropertyChanged(nameof(IsVisibleChanged));
             }
         }
         public ICommand SearchRepoCommand { get; }
 
         public SearchViewModel()
         {
+            _githubRepository = new GithubRepository();
             SearchRepoCommand = new ViewModelCommand(ExecuteSearchRepoCommand, CanExecuteSearchRepoCommand);
         }
 
@@ -65,9 +69,19 @@ namespace GitVoyager.ViewModels
             return isValid;
         }
 
-        private void ExecuteSearchRepoCommand(object obj)
+        private async void ExecuteSearchRepoCommand(object obj)
         {
-            throw new NotImplementedException();
+            var user = await _githubRepository.GetUser(_username);
+            if(user != null)
+            {
+                //var user = JsonConvert.DeserializeObject<UserModel>(isValidUsername.Result.ToString());
+                ErrorMessage = user.Name;
+                IsVisibleChanged = false;
+            }
+            else
+            {
+                ErrorMessage = "* Something went wrong";
+            }
         }
     }
 }
