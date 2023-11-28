@@ -27,23 +27,26 @@
     
     <Border CornerRadius="12">
         <Border.Background>
-            <ImageBrush ImageSource="/Images/searchback.jpg" />
+            <ImageBrush ImageSource="/Images/searchback.jpg"/>
         </Border.Background>
         <Border CornerRadius="10" BorderThickness="2" Opacity="0.85">
+            
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#00218c" Offset="0"/>
-                    <GradientStop Color="#002ab5" Offset="0.5"/>
-                    <GradientStop Color="#080e69" Offset="1"/>
+                    <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
+            
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="#04095d" Offset="0"/>
-                    <GradientStop Color="#00218c" Offset="0.5"/>
-                    <GradientStop Color="#00218c" Offset="1"/>
+                    <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource primaryBackColor3}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>

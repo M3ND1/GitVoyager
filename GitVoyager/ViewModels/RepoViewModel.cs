@@ -34,7 +34,8 @@ namespace GitVoyager.ViewModels
             } 
             else
             {
-                UserModel.Name = "SOMETHINGWENTWRONG";
+                //UserModel.Name = "";
+                Application.Current.Shutdown();
             }
 
         }
