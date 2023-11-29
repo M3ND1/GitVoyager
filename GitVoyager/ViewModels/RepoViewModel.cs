@@ -1,5 +1,6 @@
 ﻿using GitVoyager.Models;
 using GitVoyager.Repositories;
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,19 @@ namespace GitVoyager.ViewModels
     {
         private UserModel _userModel;
         private IGithubRepository githubRepository;
+        private IReadOnlyList<GitHubRepositoryModel> _repositoryList;
         public UserModel UserModel
         {
             get { return _userModel; }
             set { _userModel = value; OnPropertyChanged(nameof(UserModel)); }
         }
+
+        public IReadOnlyList<GitHubRepositoryModel> RepositoryList
+        {
+            get { return _repositoryList; }
+            set { _repositoryList = value; OnPropertyChanged(nameof(RepositoryList)); }
+        }
+
         public RepoViewModel()
         {
             githubRepository = new GithubRepository();
@@ -36,7 +45,7 @@ namespace GitVoyager.ViewModels
             else
             {
                 //UserModel.Name = "";
-                Application.Current.Shutdown();
+                System.Windows.Application.Current.Shutdown();
             }
         }
         private async void LoadExistingUserRepositories()
@@ -44,7 +53,7 @@ namespace GitVoyager.ViewModels
             var userRepos = await githubRepository.GetUserRepositories(Thread.CurrentPrincipal.Identity.Name);
             if(userRepos != null)
             {
-                var repoList = userRepos.Select(repo => new GitHubRepositoryModel(repo)).ToList();
+                RepositoryList = userRepos.Select(repo => new GitHubRepositoryModel(repo)).ToList();
             }
         }
     }

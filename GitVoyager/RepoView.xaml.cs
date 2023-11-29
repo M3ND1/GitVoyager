@@ -55,5 +55,10 @@ namespace GitVoyager
             else
                 WindowState = WindowState.Normal;
         }
+
+        private void OnRepositoryClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

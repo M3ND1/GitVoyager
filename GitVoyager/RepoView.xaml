@@ -16,6 +16,7 @@
     
     <Window.DataContext>
         <viewModel:RepoViewModel/>
+        
     </Window.DataContext>
         <Border CornerRadius="10" BorderThickness="1">
             <Border.BorderBrush>
@@ -221,10 +222,28 @@
                                 <fsharp:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}"/>
                             </Button>
                         </StackPanel>
-                        <ContentControl Content="{Binding CurrentChildView}"
-                                    Grid.Row="2"
-                                    Margin="25,25,0,25"/>
                     </Grid>
+                    <!--main content-->
+                    <StackPanel Grid.Row="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Visible">
+                            <ListBox ItemsSource="{Binding RepositoryList}" Margin="10">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Description}" />
+                                            <TextBlock Text="{Binding HtmlUrl}" Foreground="Blue" TextDecorations="Underline" Cursor="Hand" MouseDown="OnRepositoryClick"/>
+                                            <TextBlock Text="{Binding CreatedAt}"/>
+                                            <TextBlock Text="{Binding UpdatedAt}"/>
+
+                                            <!-- Add more properties as needed -->
+                                            <Separator Margin="5,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ScrollViewer>
+                    </StackPanel>
                 </Grid>
             </Border>
         </Grid>
