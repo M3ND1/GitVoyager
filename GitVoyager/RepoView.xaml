@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GitVoyager"
         xmlns:viewModel="clr-namespace:GitVoyager.ViewModels"
+        xmlns:fsharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:RepoViewModel, IsDesignTimeCreatable=False}"
         Title="RepoView" Height="450" Width="800"
@@ -42,7 +43,7 @@
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal"
                                 Height="35"
-                                Margin="15,25,0,40">
+                                Margin="15,25,0,10">
                         <Image Source="/Images/mklogo.png"/>
                         <TextBlock Text="MENDALA KAROL"
                                    Foreground="{StaticResource titleColor2}"
@@ -53,7 +54,47 @@
                                    Margin="7,0,0,0"/>
                     </StackPanel>
                     <!--Navigation buttons-->
-                    
+                    <RadioButton Style="{StaticResource menuBtn}"
+                                 Margin="20,0,0,10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Aktualny branch:" FontSize="9" Style="{StaticResource menuBtnTxt}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuBtn}"
+                                 Tag="{StaticResource color1}">
+                        <StackPanel Orientation="Horizontal">
+                            <fsharp:IconImage Icon="CodeBranch" Style="{StaticResource menuBtnIcon}"/>
+                            <TextBlock Text="Repositories" Style="{StaticResource menuBtnTxt}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuBtn}"
+                                 Tag="{StaticResource color2}">
+                        <StackPanel Orientation="Horizontal">
+                            <fsharp:IconImage Icon="CodeCommit" Style="{StaticResource menuBtnIcon}"/>
+                            <TextBlock Text="Commits history" Style="{StaticResource menuBtnTxt}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuBtn}"
+                                 Tag="{StaticResource color3}">
+                        <StackPanel Orientation="Horizontal">
+                            <fsharp:IconImage Icon="CodeCompare" Style="{StaticResource menuBtnIcon}"/>
+                            <TextBlock Text="Repository information" Style="{StaticResource menuBtnTxt}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuBtn}"
+                                 Tag="{StaticResource color4}">
+                        <StackPanel Orientation="Horizontal">
+                            <fsharp:IconImage Icon="CodeFork" Style="{StaticResource menuBtnIcon}"/>
+                            <TextBlock Text="Fork code" Style="{StaticResource menuBtnTxt}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuBtn}"
+                                 Tag="{StaticResource color5}">
+                        <StackPanel Orientation="Horizontal">
+                            <fsharp:IconImage Icon="Timeline" Style="{StaticResource menuBtnIcon}"/>
+                            <TextBlock Text="Timeline" Style="{StaticResource menuBtnTxt}"/>
+                        </StackPanel>
+                    </RadioButton>
                 </StackPanel>
             </Border>
                 <!--Main Menu-->
@@ -61,10 +102,130 @@
                         Grid.Column="1">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="0"/>
+                        <GradientStop Color="{StaticResource primaryBackColor3}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                <!--Control & Search Bar-->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel x:Name="pnlSearchRepoBar"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    FlowDirection="LeftToRight">
+                            <fsharp:IconImage Icon="Search" Style="{StaticResource menuBtnIcon}" Margin="15,0,0,0" Width="15" Height="15" Foreground="{StaticResource color9}"/>
+                            <TextBox x:Name="searchRepoTxtBox"
+                                     Margin="10,0,0,0"
+                                     Text="Your repository name..."
+                                     Template="{StaticResource TextBoxBaseControlTemplate}"/>
+                        </StackPanel>
+                        <StackPanel x:Name="pnlMangeBtnsBar"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlSearchBar_MouseLeftButtonDown"
+                                MouseEnter="pnlSearchBar_MouseEnter">
+                            <!--btnClose-->
+                            <Button x:Name="btnClose"
+                                Style="{StaticResource searchPanelBtn}"
+                                Tag="{StaticResource color7}"
+                                Click="btnClose_Click">
+                                <fsharp:IconImage Icon="Close"  Style="{StaticResource searchpanelBtnIcon}"/>
+                            </Button>
+                            <!--btnMaximize-->
+                            <Button x:Name="btnMaximize"
+                                Style="{StaticResource searchPanelBtn}"
+                                Tag="{StaticResource color3}"
+                                Click="btnMaximize_Click">
+                                <fsharp:IconImage Icon="WindowMaximize" Style="{StaticResource searchpanelBtnIcon}"/>
+                            </Button>
+                            <!--btnMinimize-->
+                            <Button x:Name="btnMinimize"
+                                Style="{StaticResource searchPanelBtn}"
+                                Tag="{StaticResource color5}"
+                                Click="btnMinimize_Click">
+                                <fsharp:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource searchpanelBtnIcon}"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+
+                            <fsharp:IconImage Icon="CodeBranch"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource titleColor2}"
+                                          Margin="35,0,10,0"/>
+                            <!--textbox here-->
+                            <TextBlock Text="Repositories"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="16"
+                                       FontFamily="Montserrat"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <!--User options-->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    FlowDirection="RightToLeft"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0">
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color1}">
+                                <fsharp:IconImage Icon="AngleDown" Width="12" Height="12" Style="{StaticResource iconButtonIcon}"/>
+                            </Button>
+                            <TextBlock Text="{Binding UserModel.Name}" Foreground="{StaticResource titleColor3}"
+                                       FontFamily="Montserrat"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"/>
+                            <Ellipse Height="35" Width="35"
+                                     Stroke="{StaticResource color2}"
+                                     StrokeThickness="2"
+                                     Margin="10,0,10,0"
+                                     FlowDirection="LeftToRight">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding UserModel.AvatarUrl}"></ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color3}">
+                                <fsharp:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}"/>
+                            </Button>
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color4}">
+                                <fsharp:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}"/>
+                            </Button>
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color5}">
+                                <fsharp:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}"/>
+                            </Button>
+                        </StackPanel>
+                        <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25,25,0,25"/>
+                    </Grid>
+                </Grid>
             </Border>
         </Grid>
         </Border>

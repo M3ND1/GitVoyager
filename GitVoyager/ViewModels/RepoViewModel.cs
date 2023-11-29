@@ -22,10 +22,11 @@ namespace GitVoyager.ViewModels
         public RepoViewModel()
         {
             githubRepository = new GithubRepository();
-            LoadCurrentUserRepositories();
+            LoadExistingUser();
+            LoadExistingUserRepositories();
         }
 
-        private async void LoadCurrentUserRepositories()
+        private async void LoadExistingUser()
         {
             var user = await githubRepository.GetUser(Thread.CurrentPrincipal.Identity.Name);
             if(user != null)
@@ -37,7 +38,14 @@ namespace GitVoyager.ViewModels
                 //UserModel.Name = "";
                 Application.Current.Shutdown();
             }
-
+        }
+        private async void LoadExistingUserRepositories()
+        {
+            var userRepos = await githubRepository.GetUserRepositories(Thread.CurrentPrincipal.Identity.Name);
+            if(userRepos != null)
+            {
+                var repoList = userRepos.Select(repo => new GitHubRepositoryModel(repo)).ToList();
+            }
         }
     }
 }

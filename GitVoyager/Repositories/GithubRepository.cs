@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Octokit;
 
@@ -32,6 +33,19 @@ namespace GitVoyager.Repositories
             catch (Exception ex)
             {
                 //handle it later
+                return null;
+            }
+        }
+
+        public async Task<IReadOnlyList<Repository>> GetUserRepositories(string username)
+        {
+            try
+            {
+                return await _client.Repository.GetAllForUser(username);
+            }
+            catch(Exception ex)
+            {
+                //Handle to log later?
                 return null;
             }
         }

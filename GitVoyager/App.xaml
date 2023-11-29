@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:GitVoyager"
              Startup="ApplicationStart">
     <Application.Resources>
-        <ResourceDictionary Source="/Styles/UIColors.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/UIColors.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonsStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/TextBoxesStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
