@@ -21,8 +21,8 @@ namespace GitVoyager
             {
                 if (searchView.IsVisible == false && searchView.IsLoaded)
                 {
-                    var repoView = new RepoView();
-                    repoView.Show();
+                    var MainView = new MainView();
+                    MainView.Show();
                     searchView.Close();
                 }
             };

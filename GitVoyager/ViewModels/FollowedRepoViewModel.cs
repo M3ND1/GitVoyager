@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GitVoyager.ViewModels
 {
-    public class RepoViewModel : ViewModelBase
+    public class FollowedRepoViewModel : ViewModelBase
     {
     }
 }

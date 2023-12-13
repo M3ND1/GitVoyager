@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace GitVoyager
 {
     /// <summary>
-    /// Interaction logic for RepoView.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class RepoView : Window
+    public partial class MainView : Window
     {
-        public RepoView()
+        public MainView()
         {
             InitializeComponent();
         }
@@ -54,11 +54,6 @@ namespace GitVoyager
                 WindowState = WindowState.Minimized;
             else
                 WindowState = WindowState.Normal;
-        }
-
-        private void OnRepositoryClick(object sender, MouseButtonEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

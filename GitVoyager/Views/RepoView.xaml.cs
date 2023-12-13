@@ -13,16 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GitVoyager
+namespace GitVoyager.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RepoView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RepoView : UserControl
     {
-        public MainWindow()
+        public RepoView()
         {
             InitializeComponent();
+        }
+        private void OnRepositoryClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

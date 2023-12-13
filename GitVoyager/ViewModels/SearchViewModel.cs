@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GitVoyager.Models;
 using GitVoyager.Repositories;
-using Newtonsoft.Json;
 
 namespace GitVoyager.ViewModels
 {
