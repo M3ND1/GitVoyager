@@ -60,7 +60,6 @@ namespace GitVoyager.ViewModels
             ExecuteShowRepoViewCommand(null);
 
             LoadExistingUser();
-            LoadExistingUserRepositories();
         }
 
         private void ExecuteShowFollowedRepoViewCommand(object obj)
@@ -95,14 +94,6 @@ namespace GitVoyager.ViewModels
             {
                 //UserModel.Name = "";
                 System.Windows.Application.Current.Shutdown();
-            }
-        }
-        private async void LoadExistingUserRepositories()
-        {
-            var userRepos = await githubRepository.GetUserRepositories(Thread.CurrentPrincipal.Identity.Name);
-            if(userRepos != null)
-            {
-                RepositoryList = userRepos.Select(repo => new GitHubRepositoryModel(repo)).ToList();
             }
         }
     }

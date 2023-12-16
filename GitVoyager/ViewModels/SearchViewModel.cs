@@ -13,7 +13,7 @@ namespace GitVoyager.ViewModels
 {
     public class SearchViewModel : ViewModelBase
     {
-        private string _username;
+        private string _username = "M3ND1";
         private string _errorMessage;
         private bool _isVisible = true;
         private IGithubRepository _githubRepository;

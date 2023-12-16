@@ -26,7 +26,7 @@ namespace GitVoyager.Views
         }
         private void OnRepositoryClick(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

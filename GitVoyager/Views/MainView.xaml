@@ -125,11 +125,6 @@
                     </Grid.RowDefinitions>
                     <!--Control & Search Bar-->
                     <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
                         <StackPanel x:Name="pnlMangeBtnsBar"
                                 Grid.Row="0"
                                 Grid.Column="1"
